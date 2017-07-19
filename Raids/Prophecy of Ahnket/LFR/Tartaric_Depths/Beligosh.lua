@@ -87,6 +87,7 @@ KBM.RegisterMod(BEL.ID, BEL)
 -- Ability Dictionary
 BEL.Lang.Ability = {}
 BEL.Lang.Ability.MagmaBreath = KBM.Language:Add("Magma Breath")
+BEL.Lang.Ability.MagmaBreath:SetGerman("Magmaatem")
 
 -- Verbose Dictionary
 BEL.Lang.Verbose = {}
@@ -99,6 +100,7 @@ BEL.Lang.Verbose.BurningGround:SetGerman("Brennende Erde")
 BEL.Lang.Verbose.BurningGround:SetFrench("Terrain enflammé")
 
 BEL.Lang.Verbose.Landing = KBM.Language:Add("Landing")
+BEL.Lang.Verbose.Landing:SetGerman("Landung")
 
 
 -- Buff Dictionary
