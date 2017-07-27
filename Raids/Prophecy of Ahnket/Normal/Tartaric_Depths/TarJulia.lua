@@ -1,8 +1,8 @@
 -- TarJulia Boss Mod for King Boss Mods
 -- Written by Wicendawen
 
-KBMPOATDTAR_Settings = nil
-chKBMPOATDTAR_Settings = nil
+KBMPOANMTDTAR_Settings = nil
+chKBMPOANMTDTAR_Settings = nil
 
 -- Link Mods
 local AddonData = Inspect.Addon.Detail("KingMolinator")
@@ -12,7 +12,7 @@ if not KBM.BossMod then
     return
 end
 
-local Instance = KBM.BossMod["Tartaric_Depths"]
+local Instance = KBM.BossMod["NMTD"]
 
 local TAR = {
     Directory = Instance.Directory,
@@ -22,7 +22,7 @@ local TAR = {
     InstanceObj = Instance,
     HasPhases = true,
     Lang = {},
-    ID = "TarJulia",
+    ID = "NMTarJulia",
     Object = "TAR",
 }
 
@@ -49,7 +49,7 @@ TAR.TarJulia = {
     Dead = false,
     Available = false,
     UnitID = nil,
-    UTID = "U1218D6C904266DB4",
+    UTID = "U5989B20B41A56057",
     TimeOut = 5,
     Triggers = {},
     Settings = {
@@ -57,9 +57,7 @@ TAR.TarJulia = {
         AlertsRef = {
             Enabled = true,
             MoltenBlast = KBM.Defaults.AlertObj.Create("red"),
-            CallForHelp = KBM.Defaults.AlertObj.Create("blue"),
             Fury = KBM.Defaults.AlertObj.Create("orange"),
-            SpiderWeave = KBM.Defaults.AlertObj.Create("purple"),
         },
         TimersRef = {
             Enabled = true,
@@ -67,15 +65,14 @@ TAR.TarJulia = {
             FirstMoltenBlast = KBM.Defaults.TimerObj.Create("red"),
             CallForHelp = KBM.Defaults.TimerObj.Create("blue"),
             FirstCallForHelp = KBM.Defaults.TimerObj.Create("blue"),
-            SpiderWeave = KBM.Defaults.TimerObj.Create("purple"),
             FirstSpiderWeave = KBM.Defaults.TimerObj.Create("purple"),
             Fury = KBM.Defaults.TimerObj.Create("orange"),
             FirstFury = KBM.Defaults.TimerObj.Create("orange"),
-        },		
+        },
         MechRef = {
-			Enabled = true,
-			SpiderWeave = KBM.Defaults.MechObj.Create("red"),
-		}
+            Enabled = true,
+            SpiderWeave = KBM.Defaults.MechObj.Create("red"),
+        }
     },
 }
 
@@ -86,7 +83,7 @@ TAR.Soul = {
     NameShort = "Infernal Soul",
     UnitList = {},
     Menu = {},
-    UTID = "U60B1A0B31BAFAC42",
+    UTID = "U174BB7DE60C19411",
     Ignore = true,
     Type = "multi",
 }
@@ -105,15 +102,15 @@ TAR.Lang.Ability.CallForHelp:SetGerman("Hilferuf")
 
 -- Verbose Dictionary
 TAR.Lang.Verbose = {}
-TAR.Lang.Verbose.MoltenBlast = KBM.Language:Add("Molten Blast")
--- TODO: transF, transG: Molten Blast (check them got it from above)
+TAR.Lang.Verbose.MoltenBlast = KBM.Language:Add("Molten Lava")
+-- TODO: transF, transG: Molten Lava (Check got them from above)
 TAR.Lang.Verbose.MoltenBlast:SetFrench("Explosion de magma")
 TAR.Lang.Verbose.MoltenBlast:SetGerman("Geschmolzene Explosion")
 
 -- Buff Dictionary
 TAR.Lang.Buff = {}
 TAR.Lang.Buff.Fury = KBM.Language:Add("Fury")
--- TODO: transF: Fury
+-- TODO: transF: Furry
 TAR.Lang.Buff.Fury:SetGerman("Raserei")
 
 -- Debuff Dictionary
@@ -129,12 +126,15 @@ TAR.Lang.Menu = {}
 TAR.Lang.Menu.FirstMoltenBlast = KBM.Language:Add("First " .. TAR.Lang.Ability.MoltenBlast[KBM.Lang])
 TAR.Lang.Menu.FirstMoltenBlast:SetFrench("Première " .. TAR.Lang.Ability.MoltenBlast[KBM.Lang])
 TAR.Lang.Menu.FirstMoltenBlast:SetGerman("Erste " .. TAR.Lang.Ability.MoltenBlast[KBM.Lang])
+
 TAR.Lang.Menu.FirstCallForHelp = KBM.Language:Add("First " .. TAR.Lang.Ability.CallForHelp[KBM.Lang])
 TAR.Lang.Menu.FirstCallForHelp:SetFrench("Première " .. TAR.Lang.Ability.CallForHelp[KBM.Lang])
 TAR.Lang.Menu.FirstCallForHelp:SetGerman("Erster " .. TAR.Lang.Ability.CallForHelp[KBM.Lang])
+
 TAR.Lang.Menu.FirstFury = KBM.Language:Add("First " .. TAR.Lang.Buff.Fury[KBM.Lang])
 TAR.Lang.Menu.FirstFury:SetFrench("Première " .. TAR.Lang.Buff.Fury[KBM.Lang])
 TAR.Lang.Menu.FirstFury:SetGerman("Erste " .. TAR.Lang.Buff.Fury[KBM.Lang])
+
 TAR.Lang.Menu.FirstSpiderWeave = KBM.Language:Add("First " .. TAR.Lang.Debuff.SpiderWeave[KBM.Lang])
 TAR.Lang.Menu.FirstSpiderWeave:SetFrench("Première " .. TAR.Lang.Debuff.SpiderWeave[KBM.Lang])
 TAR.Lang.Menu.FirstSpiderWeave:SetGerman("Erstes " .. TAR.Lang.Debuff.SpiderWeave[KBM.Lang])
@@ -161,44 +161,43 @@ function TAR:InitVars()
         Alerts = KBM.Defaults.Alerts(),
         -- TimersRef = self.Baird.Settings.TimersRef,
         AlertsRef = self.TarJulia.Settings.AlertsRef,
-        MechSpy = KBM.Defaults.MechSpy(),
     }
-    KBMPOATDTAR_Settings = self.Settings
-    chKBMPOATDTAR_Settings = self.Settings
+    KBMPOANMTDTAR_Settings = self.Settings
+    chKBMPOANMTDTAR_Settings = self.Settings
 
 end
 
 function TAR:SwapSettings(bool)
 
     if bool then
-        KBMPOATDTAR_Settings = self.Settings
-        self.Settings = chKBMPOATDTAR_Settings
+        KBMPOANMTDTAR_Settings = self.Settings
+        self.Settings = chKBMPOANMTDTAR_Settings
     else
-        chKBMPOATDTAR_Settings = self.Settings
-        self.Settings = KBMPOATDTAR_Settings
+        chKBMPOANMTDTAR_Settings = self.Settings
+        self.Settings = KBMPOANMTDTAR_Settings
     end
 
 end
 
 function TAR:LoadVars()
     if KBM.Options.Character then
-        KBM.LoadTable(chKBMPOATDTAR_Settings, self.Settings)
+        KBM.LoadTable(chKBMPOANMTDTAR_Settings, self.Settings)
     else
-        KBM.LoadTable(KBMPOATDTAR_Settings, self.Settings)
+        KBM.LoadTable(KBMPOANMTDTAR_Settings, self.Settings)
     end
 
     if KBM.Options.Character then
-        chKBMPOATDTAR_Settings = self.Settings
+        chKBMPOANMTDTAR_Settings = self.Settings
     else
-        KBMPOATDTAR_Settings = self.Settings
+        KBMPOANMTDTAR_Settings = self.Settings
     end 
 end
 
 function TAR:SaveVars()
     if KBM.Options.Character then
-        chKBMPOATDTAR_Settings = self.Settings
+        chKBMPOANMTDTAR_Settings = self.Settings
     else
-        KBMPOATDTAR_Settings = self.Settings
+        KBMPOANMTDTAR_Settings = self.Settings
     end
 end
 
@@ -303,15 +302,15 @@ function TAR:Start()
     self.TarJulia.TimersRef.Fury = KBM.MechTimer:Add(self.Lang.Buff.Fury[KBM.Lang], 25)
 
     KBM.Defaults.TimerObj.Assign(self.TarJulia)
-
-    self.TarJulia.MechRef.SpiderWeave = KBM.MechSpy:Add(self.Lang.Debuff.SpiderWeave[KBM.Lang], 5, "playerDebuff", self.TarJulia)
-    KBM.Defaults.MechObj.Assign(self.TarJulia)
+	
+	-- Create MechSpy
+	self.TarJulia.MechRef.SpiderWeave = KBM.MechSpy:Add(self.Lang.Debuff.SpiderWeave[KBM.Lang], nil, "playerDebuff", self.TarJulia)
+	KBM.Defaults.MechObj.Assign(self.TarJulia)
 
     -- Create Alerts
-    self.TarJulia.AlertsRef.MoltenBlast = KBM.Alert:Create(self.Lang.Verbose.MoltenBlast[KBM.Lang], 10, true, true, "red")
-    self.TarJulia.AlertsRef.CallForHelp = KBM.Alert:Create(self.Lang.Ability.CallForHelp[KBM.Lang], 1, true, true, "blue")
+    self.TarJulia.AlertsRef.MoltenBlast = KBM.Alert:Create(self.Lang.Verbose.MoltenBlast[KBM.Lang], 3, true, true, "red")
     self.TarJulia.AlertsRef.Fury = KBM.Alert:Create(self.Lang.Buff.Fury[KBM.Lang], 1, true, true, "orange")
-    self.TarJulia.AlertsRef.SpiderWeave = KBM.Alert:Create(self.Lang.Debuff.SpiderWeave[KBM.Lang], 1, true, true, "purple")
+
     KBM.Defaults.AlertObj.Assign(self.TarJulia)
 
     -- Assign Alerts and Timers to Triggers
@@ -320,17 +319,15 @@ function TAR:Start()
     self.TarJulia.Triggers.MoltenBlast:AddTimer(self.TarJulia.TimersRef.MoltenBlast)
 
     self.TarJulia.Triggers.CallForHelp = KBM.Trigger:Create(self.Lang.Ability.CallForHelp[KBM.Lang], "cast", self.TarJulia)
-    self.TarJulia.Triggers.CallForHelp:AddAlert(self.TarJulia.AlertsRef.CallForHelp)
     self.TarJulia.Triggers.CallForHelp:AddTimer(self.TarJulia.TimersRef.CallForHelp)
 
     self.TarJulia.Triggers.SpiderWeave = KBM.Trigger:Create(self.Lang.Debuff.SpiderWeave[KBM.Lang], "playerDebuff", self.TarJulia)
-    self.TarJulia.Triggers.SpiderWeave:AddAlert(self.TarJulia.AlertsRef.SpiderWeave)
     self.TarJulia.Triggers.SpiderWeave:AddTimer(self.TarJulia.TimersRef.SpiderWeave)
     self.TarJulia.Triggers.SpiderWeave:AddSpy(self.TarJulia.MechRef.SpiderWeave)
 
     self.TarJulia.Triggers.Fury = KBM.Trigger:Create(self.Lang.Buff.Fury[KBM.Lang], "buff", self.TarJulia)
-    self.TarJulia.Triggers.Fury:AddAlert(self.TarJulia.AlertsRef.Fury)
     self.TarJulia.Triggers.Fury:AddTimer(self.TarJulia.TimersRef.Fury)
+    self.TarJulia.Triggers.Fury:AddAlert(self.TarJulia.AlertsRef.Fury)
 
     self.TarJulia.CastBar = KBM.Castbar:Add(self, self.TarJulia)
     self.PhaseObj = KBM.PhaseMonitor.Phase:Create(1)
