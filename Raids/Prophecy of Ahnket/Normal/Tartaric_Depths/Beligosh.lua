@@ -89,7 +89,7 @@ KBM.RegisterMod(BEL.ID, BEL)
 BEL.Lang.Ability = {}
 BEL.Lang.Ability.MagmaBreath = KBM.Language:Add("Magma Breath")
 -- TODO: transF: Magma Breath
--- TODO: transG: Magma Breath
+BEL.Lang.Ability.MagmaBreath:SetGerman("Magma Breath")
 
 -- Verbose Dictionary
 BEL.Lang.Verbose = {}
@@ -104,6 +104,7 @@ BEL.Lang.Verbose.BurningGround:SetGerman("Brennende Erde")
 BEL.Lang.Verbose.BurningGround:SetFrench("Terrain enflammé") 
 
 BEL.Lang.Verbose.Landing = KBM.Language:Add("Landing")
+BEL.Lang.Verbose.Landing:SetGerman("Landung")
 
 BEL.Lang.Verbose.SoftEnrageTimer = KBM.Language:Add("Soft Enrage")
 
@@ -130,15 +131,19 @@ BEL.Lang.Notify.Wrath:SetGerman("Beligosh: Spürt den Zorn von Beligosh!")
 
 BEL.Lang.Notify.BurningGround1 = KBM.Language:Add("Your Weakness is your compassion")
 -- TODO: transF: Your Weakness is your compassion
--- TODO: transG: Your Weakness is your compassion
+BEL.Lang.Notify.BurningGround1:SetGerman("Euer Mitleid ist Eure Schwäche.") --Tank Debuff
 
 BEL.Lang.Notify.BurningGround2 = KBM.Language:Add("Choose who lives, who dies.")
 BEL.Lang.Notify.BurningGround2:SetFrench("Choisissez qui vivra et qui mourra")
--- TODO: transG: Choose who lives, who dies.
+BEL.Lang.Notify.BurningGround2:SetGerman("Entscheidet, wer lebt und stirbt!") -- Tank Debuff
 
 BEL.Lang.Notify.BurningGround3 = KBM.Language:Add("Abandon your friend! Abandon your hope!")
 BEL.Lang.Notify.BurningGround3:SetFrench("Abandonnez vos amis ! Abandonnez l'espoir !")
--- TODO: transG: Abandon your friend! Abandon your hope!
+BEL.Lang.Notify.BurningGround3:SetGerman("Lasst Euren Freund im Stich! Gebt Eure  Hoffnung auf!") -- tankdebuff
+
+-- BEL.Lang.Notify.BurningGround4:SetGerman("Schon bald werdet Ihr den Freuden der Opferung teilhaftig werden!") -- Saat der Opferung
+-- BEL.Lang.Notify.BurningGround5:SetGerman("Ich gebe Euch meinen Segen! Meine Saat der Zerstörung!")
+-- BEL.Lang.Notify.BurningGround6:SetGerman("Empfangt meinen Segen, Sterblicher! Und schenkt  ihn Euren Freunden!") -- Saat der Opferung
 
 -- Description Dictionary
 BEL.Lang.Main = {}
